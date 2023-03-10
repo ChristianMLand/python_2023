@@ -4,7 +4,7 @@ This Project is an experiment to demonstrate a few alternative design choices fo
 - Utilization of a base class for our models to reduce code duplication
 - Using dataclasses for our models to simplify our constructors and implement some helpful dunder methods such as \_\_eq\_\_
 - Using properties to handle our relationships (this is technically less efficient, but much more readable, and the efficiency difference is negligable at this scale)
-- Custom decorators for our controller routes to reduce code duplication and increase readability
+- Custom decorators for our controller routes to reduce code duplication and increase readability (I recognize these might be more complicated than what we could reasonably expect from students, but I wanted to showcase them anyways)
 - utilizing url_for for redirects since it is more consistent, and also is more clear on how to pass variables with a redirect
 - Using `app.get` and `app.post` instead of `app.route` and specifying the methods as it is more consistent with other stacks, and is more readable
 - storing error messages in a dictionary rather before flashing all at once, rather than flashing one at a time
