@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, session, url_for
 from flask_app import app
 from flask_app.models import User, Message
-from flask_app.controllers import enforce_login, validate
+from flask_app.controllers import enforce_login, validate_model
 
 @app.get("/wall")
 @enforce_login # custom enforce_login decorator simple checks if a user_id is in session, and redirects them to the login page if not
@@ -14,8 +14,8 @@ def wall():
     return render_template("wall.html", **context)
 
 @app.post("/messages/create")
-@enforce_login
-@validate(Message) # once again using our validate decorator, but this time passing in the Message model
+@validate_model(Message) # once again using our validate decorator, but this time passing in the Message model
+@enforce_login # chained decorators are applied from the bottom up, so by having this one last we ensure that it runs first
 def create_message():
     Message.create(sender_id=session["user_id"], **request.form)
     return redirect(url_for('wall'))
